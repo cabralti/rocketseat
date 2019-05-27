@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Exercícios: Módulo 02</title>
+</head>
+
+<body>
+
+    <h2>1º exercício</h2>
+
+    <p>
+        Crie um botão que ao ser clicado cria um novo elemento em tela com a forma de um quadrado vermelho com 100px de
+        altura e largura. Sempre que o botão for clicado um novo quadrado deve aparecer na tela.
+    </p>
+
+    <main>
+        <button>Criar Quadrado</button>
+        <div id="quadrados"></div>
+    </main>
+
+    <script>
+
+        var botaoElement = document.querySelector('button');
+        var quadradosElement = document.querySelector('#quadrados');
+
+        botaoElement.onclick = function () {
+            var quadrado = document.createElement('div');
+
+            quadrado.style.width = '100px';
+            quadrado.style.height = '100px';
+            quadrado.style.backgroundColor = '#f00';
+
+            quadrado.onmouseover = function () {
+                quadrado.style.backgroundColor = getRandomColor();
+            }
+
+            quadradosElement.appendChild(quadrado);
+        }
+
+        function getRandomColor() {
+            var letters = "0123456789ABCDEF";
+            var color = "#";
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+    </script>
+
+</body>
+
+</html>
