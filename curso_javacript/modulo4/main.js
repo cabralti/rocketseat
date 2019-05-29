@@ -37,3 +37,13 @@ minhaPromise()
     .catch(function (error) {
         console.warn(error);
     });
+
+
+// AJAX: Utilizando helper Axios (Encapsulamento do XMLHttpRequest)
+axios.get('https://api.github.com/users/cabralti')
+    .then(function (response) {
+        console.log(response);
+    })
+    .catch(function (error) {
+        console.warn(error);
+    });
