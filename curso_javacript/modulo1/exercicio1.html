@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Curso Javascript | Introdução</title>
+</head>
+
+<body>
+    <h2>1º exercício</h2>
+
+    <h4>Crie uma função que dado o objeto a seguir:</h4>
+    <code>
+        var endereco = {
+            rua: "Rua dos pinheiros",
+            numero: 1293,
+            bairro: "Centro",
+            cidade: "São Paulo",
+            uf: "SP"
+           };
+    </code>
+
+    <h4>Retorne o seguinte conteúdo:</h4>
+    <code>
+        O usuário mora em São Paulo/SP, no bairro Centro, na rua "Rua dos Pinheiros" com nº 1293
+    </code>
+
+    <script>
+        var endereco = {
+            rua: 'Rua dos pinheiros',
+            numero: '1293',
+            bairro: 'Centro',
+            cidade: 'São Paulo',
+            uf: 'SP'
+        }
+
+        function dadosUsuario(endereco) {
+            return 'O usuário mora em ' + endereco.cidade + '/' + endereco.uf + ', no bairro ' + endereco.bairro + ', na rua "' + endereco.rua + '" com nº ' + endereco.numero;
+        }
+
+        console.log(dadosUsuario(endereco));
+    </script>
+</body>
+
+</html>
