@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Curso Javascript | Introdução</title>
+</head>
+
+<body>
+    <h2>5º exercício</h2>
+
+    <h4>Dado o seguinte vetor de objetos:</h4>
+    <code>
+            var usuarios = [ <br>
+            {<br>
+                nome: 'Diego',<br>
+                habilidades: ['Javascript', 'ReactJS', 'Redux']<br>
+            },<br>
+            {<br>
+                nome: 'Gabriel',<br>
+                habilidades: ['VueJS', 'Ruby on Rails', 'Elixir']<br>
+            }<br>
+        ];
+    </code>
+
+    <h4>Escreva uma função que produza o seguinte resultado:</h4>
+    <code>
+        O Diego possui as habilidades: Javascript, ReactJS, Redux <br>
+        O Gabriel possui as habilidades: VueJS, Ruby on Rails, Elixir
+    </code>
+
+    <p>
+        Dica: Para percorrer um vetor você deve utilizar a sintaxe for...of e para unir valores de um array com um
+        separador utilize o join.
+    </p>
+
+    <script>
+
+        function exibirDados(usuarios) {
+            for (usuario of usuarios) {
+                console.log("O " + usuario.nome + " possui as habilidades: " + usuario.habilidades.join(', '));
+            }
+        }
+
+        var usuarios = [
+            {
+                nome: 'Diego',
+                habilidades: ['Javascript', 'ReactJS', 'Redux']
+            },
+            {
+                nome: 'Gabriel',
+                habilidades: ['VueJS', 'Ruby on Rails', 'Elixir']
+            }
+        ];
+
+        exibirDados(usuarios);
+
+    </script>
+</body>
+
+</html>
