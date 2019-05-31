@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Curso Javascript | Manipulando a DOM</title>
+</head>
+
+<body>
+
+    <h2>3º exercício</h2>
+
+    <p>A partir do seguinte vetor:</p>
+
+    <code>
+        var nomes = ["Diego", "Gabriel", "Lucas"];
+    </code>
+
+    <p>Preencha uma lista ( &lt; ul &gt;) no HTML com os itens da seguinte forma:</p>
+
+    <ul>
+        <li>Diego</li>
+        <li>Gabriel</li>
+        <li>Lucas</li>
+    </ul>
+
+    <div id="app">
+        <ul></ul>
+    </div>
+
+    <script>
+
+        var nomes = ['Diego', 'Gabriel', 'Lucas'];
+        var ulElement = document.querySelector('#app ul');
+
+        for (nome of nomes) {
+            var liElement = document.createElement('li');
+            var textElement = document.createTextNode(nome);
+
+            liElement.appendChild(textElement);
+            ulElement.appendChild(liElement);
+        }
+
+    </script>
+
+</body>
+
+</html>

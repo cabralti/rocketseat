@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Curso Javascript | Manipulando a DOM</title>
+</head>
+
+<body>
+
+    <h2>2º exercício</h2>
+
+    <p>
+        Utilizando o resultado do primeiro desafio, toda vez que o usuário passar o mouse por cima de algum quadrado
+        troque sua cor para uma cor aleatória gerada pela função abaixo:
+    </p>
+
+    <code>
+            function getRandomColor() { <br>
+                var letters = "0123456789ABCDEF"; <br>
+                var color = "#"; <br>
+    
+                for (var i = 0; i < 6; i++) { <br></6>
+                    color += letters[Math.floor(Math.random() * 16)]; <br>
+                } <br>
+    
+                return color; <br>
+            }<br><br>
+    </code>
+
+    <button type="button" id="new_square">Criar Quadrado</button>
+
+    <div id="squares"></div>
+
+    <script>
+
+        var buttonElement = document.querySelector('#new_square');
+        var squares = document.querySelector('#squares');
+
+        buttonElement.onclick = function () {
+            var square = document.createElement('div');
+            square.style.backgroundColor = '#f00';
+            square.style.width = '100px';
+            square.style.height = '100px';
+
+            square.onmouseover = function () {
+                square.style.backgroundColor = getRandomColor();
+            }
+
+            squares.appendChild(square);
+        }
+
+        function getRandomColor() {
+            var letters = "0123456789ABCDEF";
+            var color = "#";
+
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+
+            return color;
+        }
+    </script>
+
+</body>
+
+</html>

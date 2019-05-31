@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Exercícios: Módulo 02</title>
+    <title>Curso Javascript | Manipulando a DOM</title>
 </head>
 
 <body>
@@ -15,42 +15,27 @@
 
     <p>
         Crie um botão que ao ser clicado cria um novo elemento em tela com a forma de um quadrado vermelho com 100px de
-        altura e largura. Sempre que o botão for clicado um novo quadrado deve aparecer na tela.
+        altura e largura. Sempre que o botão for clicado um novo quadrado deve
+        aparecer na tela.
     </p>
 
-    <main>
-        <button>Criar Quadrado</button>
-        <div id="quadrados"></div>
-    </main>
+    <button type="button" id="new_square">Criar Quadrado</button>
+
+    <div id="squares"></div>
 
     <script>
 
-        var botaoElement = document.querySelector('button');
-        var quadradosElement = document.querySelector('#quadrados');
+        var buttonElement = document.querySelector('#new_square');
+        var squares = document.querySelector('#squares');
 
-        botaoElement.onclick = function () {
-            var quadrado = document.createElement('div');
+        buttonElement.onclick = function () {
+            var square = document.createElement('div');
+            square.style.backgroundColor = '#f00';
+            square.style.width = '100px';
+            square.style.height = '100px';
 
-            quadrado.style.width = '100px';
-            quadrado.style.height = '100px';
-            quadrado.style.backgroundColor = '#f00';
-
-            quadrado.onmouseover = function () {
-                quadrado.style.backgroundColor = getRandomColor();
-            }
-
-            quadradosElement.appendChild(quadrado);
+            squares.appendChild(square);
         }
-
-        function getRandomColor() {
-            var letters = "0123456789ABCDEF";
-            var color = "#";
-            for (var i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
-
     </script>
 
 </body>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Curso Javascript | Manipulando a DOM</title>
+</head>
+
+<body>
+
+    <h2>4º exercício</h2>
+
+    <p>Seguindo o resultado do exercício anterior adicione um input em tela e um botão como a seguir:</p>
+
+    <code>
+            &lt;input type="text" name="nome"&gt; <br>
+            &lt;button onClick="adicionar()"&gt;Adicionar&lt;/button&gt; <br>
+    </code>
+
+    <p>
+        Ao clicar no botão, a função adicionar() deve ser disparada adicionando um novo item a lista de nomes baseado no
+        nome preenchido no input e renderizando o novo item em tela juntos aos demais itens anteriores. Além disso, o
+        conteúdo do input deve ser apagado após o clique.
+    </p>
+
+    <div id="app">
+
+        <input type="text" name="nome">
+        <button onclick="adicionar()">Adicionar</button>
+
+        <ul></ul>
+    </div>
+
+    <script>
+
+        var nomes = ['Diego', 'Gabriel', 'Lucas'];
+        var ulElement = document.querySelector('#app ul');
+        var inputElement = document.querySelector('#app input');
+
+        function adicionar() {
+            addItem(inputElement.value);
+            inputElement.value = '';
+        }
+
+        function addItem(item) {
+            var liElement = document.createElement('li');
+            var textElement = document.createTextNode(item);
+
+            liElement.appendChild(textElement);
+            ulElement.appendChild(liElement);
+        }
+
+        for (nome of nomes) {
+            addItem(nome);
+        }
+
+    </script>
+
+</body>
+
+</html>
