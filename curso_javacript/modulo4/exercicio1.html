@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Curso Javascript | JS assíncrono</title>
+</head>
+
+<body>
+    <h2>1º Exercício</h2>
+
+    <p>
+        Crie uma função que recebe a idade de um usuário e retorna uma Promise que depois de 2
+        segundos retornará se usuário é maior ou não que 18 anos. Se o usuário ter mais que 18 anos de
+        idade o resultado deve cair no .then, caso contrário, no .catch
+    </p>
+
+    <code>
+            function checaIdade(idade) { <br>
+                // Retornar uma promise<br>
+            }<br>
+            
+            checaIdade(20) <br>
+                .then(function() { <br>
+                    console.log("Maior que 18"); <br>
+                })<br>
+                .catch(function() {<br>
+                    console.log("Menor que 18"); <br>
+                });                             <br>
+    </code>
+
+    <script>
+
+        function checaIdade(idade) {
+            return new Promise(function (resolve, reject) {
+                setInterval(function () {
+                    (idade >= 18) ? resolve() : reject()
+                }, 2000)
+            })
+        }
+
+        checaIdade(23)
+            .then(function () {
+                console.log('Maior que 18');
+            })
+            .catch(function () {
+                console.log('Menor que 18');
+            });
+    </script>
+</body>
