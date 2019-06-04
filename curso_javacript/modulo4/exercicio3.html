@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Curso Javascript | JS assíncrono</title>
+</head>
+
+<body>
+    <h2>3º Exercício</h2>
+
+    <p>
+        A partir do resultado do exemplo anterior adicione um indicador de carregamento em tela no lugar
+        da lista apenas enquanto a requisição estiver acontecendo:
+    </p>
+
+    <code>
+            &lt;li&gt;Carregando...&lt;/li&gt;
+    </code>
+
+    <p>
+        Além disso, adicione uma mensagem de erro em tela caso o usuário no Github não exista.
+        Dica: Quando o usuário não existe, a requisição irá cair no .catch com código de erro 404
+    </p>
+
+    <hr>
+
+    <div id="app">
+        <input type="text" name="user" placeholder="Informe o user do github">
+        <button type="button" onclick="searchRepositories()">Buscar</button>
+
+        <ul></ul>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        let inputElement = document.querySelector('#app input');
+        let ulElement = document.querySelector('#app ul');
+
+        function searchRepositories() {
+            renderLoading();
+
+            axios.get('https://api.github.com/users/' + inputElement.value + '/repos')
+                .then(function (response) {
+                    renderListRepositories(response.data);
+                })
+                .catch(function (reject) {
+                    renderError(reject);
+                });
+        }
+
+        function renderLoading() {
+            ulElement.innerHTML = '';
+
+            let liElement = document.createElement('li');
+            let textElement = document.createTextNode('Carregando...');
+
+            liElement.appendChild(textElement);
+            ulElement.appendChild(liElement);
+        }
+
+        function renderError(reject) {
+            ulElement.innerHTML = '';
+
+            let liElement = document.createElement('li');
+            let textElement = document.createTextNode(reject);
+
+            liElement.style.color = '#f00';
+
+            liElement.appendChild(textElement);
+            ulElement.appendChild(liElement);
+        }
+
+        function renderListRepositories(repositories) {
+            ulElement.innerHTML = '';
+
+            for (repository of repositories) {
+                let liElement = document.createElement('li');
+                let textElement = document.createTextNode(repository.name);
+                
+                liElement.style.color = '#0366D6';
+
+                liElement.appendChild(textElement);
+                ulElement.appendChild(liElement);
+            }
+        }
+
+    </script>
+</body>
