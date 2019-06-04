@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Curso Javascript | JS assíncrono</title>
+</head>
+
+<body>
+    <h2>2º Exercício</h2>
+
+    <p>
+        Crie uma tela com um &lt;input&gt; que deve receber o nome de um usuário no Github. Após digitar o
+        nome do usuário e clicar no botão buscar a aplicação deve buscar pela API do Github (conforme
+        URL abaixo) os dados de repositórios do usuário e mostrá-los em tela:
+        URL de exemplo: https://api.github.com/users/diego3g/repos
+        Basta alterar "diego3g" pelo nome do usuário
+    </p>
+
+    <code>
+            &lt;input type="text" name="user"&gt;
+            &lt;button onclick=""&gt;Adicionar&lt;/button&gt;
+    </code>
+
+    <p>
+        Depois de preencher o input e adicionar, a seguinte lista deve aparecer abaixo:
+    </p>
+    <code>
+            <ul>
+                <li>repo1</li>
+                <li>repo2</li>
+                <li>repo3</li>
+                <li>repo4</li>
+                <li>repo5</li>
+            </ul>                   
+    </code>
+
+    <hr>
+
+    <div id="app">
+        <input type="text" name="user" placeholder="Informe o user do github">
+        <button type="button" onclick="searchRepositories()">Buscar</button>
+
+        <ul></ul>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        let inputElement = document.querySelector('#app input');
+        let ulElement = document.querySelector('#app ul');
+
+        function searchRepositories() {
+            axios.get('https://api.github.com/users/' + inputElement.value + '/repos')
+                .then(function (response) {
+                    renderListRepositories(response.data);
+                })
+                .catch(function(reject){
+                    console.warn(reject);
+                });
+        }
+
+        function renderListRepositories(repositories) {
+            ulElement.innerHTML = '';
+
+            for (repository of repositories) {
+                let liElement = document.createElement('li');
+                let textElement = document.createTextNode(repository.name);
+
+                liElement.appendChild(textElement);
+                ulElement.appendChild(liElement);
+            }
+        }
+
+    </script>
+</body>
