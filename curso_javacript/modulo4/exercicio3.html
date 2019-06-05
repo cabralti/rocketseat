@@ -10,33 +10,21 @@
 </head>
 
 <body>
-    <h2>2º Exercício</h2>
+    <h2>3º Exercício</h2>
 
     <p>
-        Crie uma tela com um &lt;input&gt; que deve receber o nome de um usuário no Github. Após digitar o
-        nome do usuário e clicar no botão buscar a aplicação deve buscar pela API do Github (conforme
-        URL abaixo) os dados de repositórios do usuário e mostrá-los em tela:
-        URL de exemplo: https://api.github.com/users/diego3g/repos
-        Basta alterar "diego3g" pelo nome do usuário
+        A partir do resultado do exemplo anterior adicione um indicador de carregamento em tela no lugar
+        da lista apenas enquanto a requisição estiver acontecendo:
     </p>
 
     <code>
-        &lt;input type="text" name="user"&gt;
-        &lt;button onclick=""&gt;Adicionar &lt;/button&gt;
+            &lt;li&gt;Carregando...&lt;/li&gt;
     </code>
 
     <p>
-        Depois de preencher o input e adicionar, a seguinte lista deve aparecer abaixo:
+        Além disso, adicione uma mensagem de erro em tela caso o usuário no Github não exista.
+        Dica: Quando o usuário não existe, a requisição irá cair no .catch com código de erro 404
     </p>
-    <code>
-            <ul>
-                <li>repo1</li>
-                <li>repo2</li>
-                <li>repo3</li>
-                <li>repo4</li>
-                <li>repo5</li>
-            </ul>                   
-    </code>
 
     <hr>
 
@@ -53,13 +41,37 @@
         let ulElement = document.querySelector('#app ul');
 
         function searchRepositories() {
+            renderLoading();
+
             axios.get('https://api.github.com/users/' + inputElement.value + '/repos')
                 .then(function (response) {
                     renderListRepositories(response.data);
                 })
-                .catch(function(reject){
-                    console.warn(reject);
+                .catch(function (reject) {
+                    renderError(reject);
                 });
+        }
+
+        function renderLoading() {
+            ulElement.innerHTML = '';
+
+            let liElement = document.createElement('li');
+            let textElement = document.createTextNode('Carregando...');
+
+            liElement.appendChild(textElement);
+            ulElement.appendChild(liElement);
+        }
+
+        function renderError(reject) {
+            ulElement.innerHTML = '';
+
+            let liElement = document.createElement('li');
+            let textElement = document.createTextNode(reject);
+
+            liElement.style.color = '#f00';
+
+            liElement.appendChild(textElement);
+            ulElement.appendChild(liElement);
         }
 
         function renderListRepositories(repositories) {
@@ -68,6 +80,8 @@
             for (repository of repositories) {
                 let liElement = document.createElement('li');
                 let textElement = document.createTextNode(repository.name);
+                
+                liElement.style.color = '#0366D6';
 
                 liElement.appendChild(textElement);
                 ulElement.appendChild(liElement);
