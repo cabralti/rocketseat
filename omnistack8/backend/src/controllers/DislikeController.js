@@ -14,7 +14,7 @@ module.exports = {
             return res.status(400).json({ error: 'Dev not exists' });
         }
 
-        loggedDev.dislike.push(targetDev._id);
+        loggedDev.dislikes.push(targetDev._id);
 
         await loggedDev.save();
 
